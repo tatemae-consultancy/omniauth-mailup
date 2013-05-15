@@ -12,13 +12,16 @@ module OmniAuth
         :authorize_url => "/Authorization/OAuth/LogOn",
         :token_url => "/Authorization/OAuth/Token"
       }
+      
+      # TODO: Do we need this?
+      #option :provider_ignores_state, true
 
       uid { raw_info["id"] }
 
       info do
         {
           :email => raw_info["email"]
-          # and anything else you want to return to your API consumers
+          # TODO: Whatever other info we want to return
         }
       end
 

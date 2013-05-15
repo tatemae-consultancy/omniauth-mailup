@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Brian Getting"]
   gem.email         = ["brian@tatem.ae"]
   gem.description   = %q{MailUp OAuth2 Strategy for OmniAuth 1.0.}
-  gem.summary       = %q{MailUp OAuth2 Strategy for OmniAuth 1.0.}
+  gem.summary       = %q{OAuth2 Strategy for OmniAuth 1.0 for connecting to the MailUp REST API.}
   gem.homepage      = "https://github.com/tatemae-consultancy/omniauth-mailup"
 
   gem.files         = `git ls-files`.split($/)
