@@ -1,4 +1,4 @@
-# Omniauth::Mailup
+# OmniAuth Mailup
 
 MailUp OAuth2 Strategy for OmniAuth 1.0.
 
