@@ -15,8 +15,6 @@ describe OmniAuth::Strategies::MailUp do
     end
   end
 
-  it_should_behave_like 'an oauth2 strategy'
-
 	describe '#client' do
     it 'has correct MailUp api site' do
       subject.options.client_options.site.should eq('https://services.mailup.com')
