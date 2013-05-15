@@ -16,12 +16,16 @@ module OmniAuth
       # TODO: Do we need this?
       #option :provider_ignores_state, true
 
-      uid { raw_info["id"] } # TODO: Need uid from MailUp
+      uid { raw_info["uid"] } # TODO: Need uid from MailUp
 
       info do
         {
-          :nickname => raw_info["username"]
-          # TODO: Whatever other info we want to return
+          :name => "#{raw_info["first_name"]} #{raw_info["last_name"]}"
+          :nickname => raw_info["username"],
+          :first_name => raw_info["first_name"],
+          :last_name => raw_info["last_name"],
+          :email => raw_info["email"]
+          # TODO: Make sure the endpoint returns this info
         }
       end
 
