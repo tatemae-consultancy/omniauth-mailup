@@ -16,17 +16,17 @@ module OmniAuth
       # TODO: Do we need this?
       #option :provider_ignores_state, true
 
-      uid { raw_info["id"] }
+      uid { raw_info["id"] } # TODO: Need uid from MailUp
 
       info do
         {
-          :email => raw_info["email"]
+          :nickname => raw_info["username"]
           # TODO: Whatever other info we want to return
         }
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/API/v1/Console/User/Info.json').parsed
+        @raw_info ||= access_token.get('/API/v1/Rest/ConsoleService.svc/Console/Authentication/Info').parsed
       end
     end
   end
