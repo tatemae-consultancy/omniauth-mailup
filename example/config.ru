@@ -18,8 +18,7 @@ class App < Sinatra::Base
 
   get '/auth/:provider/callback' do
     content_type 'text/plain'
-    token = request.env['omniauth.auth']['credentials']['token']
-    "Access token is #{token}".inspect rescue "No data"
+    "AuthHash: #{request.env['omniauth.auth']}".inspect rescue "No data"
   end
 
   get '/auth/failure' do
