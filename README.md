@@ -20,7 +20,7 @@ use OmniAuth::Builder do
 end
 ```
 
-In Rails, you'll want to add to the middleware stack:
+In Rails, you'll want to add to the middleware stack (`config/initializers/omniauth.rb`):
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
@@ -37,14 +37,26 @@ Here's an example _Authentication Hash_ available in `request.env['omniauth.auth
   :provider => 'mailup',
   :uid => '12ab56cd9',
   :info => {
-	  :name => 'Joe Public',
-	  :nickname => 'joepublic',
-	  :first_name => 'Joe',
-	  :last_name => 'Public',
-	  :email => 'joe@public.com'
+	  :name => 'joepublic',
+	  :nickname => 'joepublic'
   },
   :credentials => {
-    :token => 'adsf456lkj758klfdsg5634kl' # OAuth 2.0 access_token. Store and use to authenticate API requests.
+    :token => 'adsf456lkj758klfdsg5634kl',        # OAuth 2.0 access_token.
+    :refresh_token => '6l5k37hl345656lh342345lh', # OAuth 2.0 refresh_token.
+    :expires => true,
+    :expires_at => 1369759346
   }
 }
 ```
+
+## Example
+
+An example Sinatra app is provided in `example/config.ru`. Simply follow these instructions:
+
+```
+cd example
+bundle
+rackup config.ru
+```
+
+You can then view the app in your browser at `localhost:9292`.

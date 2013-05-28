@@ -14,21 +14,19 @@ module OmniAuth
       }
       
       # TODO: Do we need this?
-      #option :provider_ignores_state, true
+      option :provider_ignores_state, true
 
+      # AuthHash data for Omniauth
       uid { raw_info["uid"] } # TODO: Need uid from MailUp
-
+      
       info do
         {
-          :name => "#{raw_info["first_name"]} #{raw_info["last_name"]}"
+          :name => raw_info["username"],
           :nickname => raw_info["username"],
-          :first_name => raw_info["first_name"],
-          :last_name => raw_info["last_name"],
-          :email => raw_info["email"]
-          # TODO: Make sure the endpoint returns this info
         }
       end
-
+      
+      # Get more information about the user.
       def raw_info
         @raw_info ||= access_token.get('/API/v1/Rest/ConsoleService.svc/Console/Authentication/Info').parsed
       end
@@ -36,4 +34,5 @@ module OmniAuth
   end
 end
 
+# Make sure that 'mailup' camelizes properly to 'MailUp'.
 OmniAuth.config.add_camelization 'mailup', 'MailUp'
