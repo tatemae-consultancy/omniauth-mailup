@@ -28,7 +28,7 @@ module OmniAuth
       
       # Get more information about the user.
       def raw_info
-        @raw_info ||= access_token.get('/API/v1/Rest/ConsoleService.svc/Console/Authentication/Info').parsed
+        @raw_info ||= access_token.get('/API/v1/Rest/ConsoleService.svc/Console/Authentication/Info', {}, {"x-esaccess" => access_token.token}).parsed
       end
     end
   end
