@@ -1,5 +1,6 @@
 require 'omniauth-oauth2'
 require 'multi_json'
+require 'multi_xml'
 
 module OmniAuth
   module Strategies
@@ -17,22 +18,19 @@ module OmniAuth
       option :provider_ignores_state, true
 
       # AuthHash data for Omniauth
-      uid { raw_info["uid"] } # TODO: Need uid from MailUp
+      uid { raw_info["UID"] } # TODO: Need uid from MailUp
       
       info do
         {
-          :name => raw_info["username"],
-          :nickname => raw_info["username"],
+          :name => raw_info["Username"],
+          :nickname => raw_info["Username"],
         }
       end
       
       # Get more information about the user.
       def raw_info
-        #@raw_info ||= access_token.get('/API/v1/Rest/ConsoleService.svc/Console/Authentication/Info', {"x-esaccess" => access_token.token}).parsed
-        @raw_info = {
-          "uid" => 'test',
-          "username" => 'test'
-        }
+        req = access_token.get('/API/v1/Rest/ConsoleService.svc/Console/Authentication/Info')
+        @raw_info ||= MultiXml.parse(req.body)["ConsoleCurrentAuthenticatedUserInfo"]
       end
     end
   end
