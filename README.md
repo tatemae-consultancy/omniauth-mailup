@@ -35,17 +35,19 @@ Here's an example _Authentication Hash_ available in `request.env['omniauth.auth
 ```ruby
 {
   :provider => 'mailup',
-  :uid => '12ab56cd9',
+  :uid => '10',
   :info => {
-	  :name => 'joepublic',
-	  :nickname => 'joepublic'
+	  :company => 'ACME, Inc.',
+	  :nickname => 'm12345',
+	  :is_trial => true
   },
   :credentials => {
     :token => 'adsf456lkj758klfdsg5634kl',        # OAuth 2.0 access_token.
     :refresh_token => '6l5k37hl345656lh342345lh', # OAuth 2.0 refresh_token.
     :expires => true,
-    :expires_at => 1369759346
-  }
+    :expires_at => 1369866442
+  },
+  :extra => {...}
 }
 ```
 
@@ -60,3 +62,5 @@ rackup config.ru
 ```
 
 You can then view the app in your browser at `localhost:9292`.
+
+Please note that in order to authenticate with MailUp you will need to tunnel your local app using a service like `PageKite` or `Localtunnel`.

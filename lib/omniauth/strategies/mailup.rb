@@ -22,8 +22,9 @@ module OmniAuth
       
       info do
         {
-          :name => raw_info["Username"],
+          :company => raw_info["Company"],
           :nickname => raw_info["Username"],
+          :is_trial => raw_info["IsTrial"]
         }
       end
       
