@@ -63,4 +63,4 @@ rackup config.ru
 
 You can then view the app in your browser at `localhost:9292`.
 
-Please note that in order to authenticate with MailUp you will need to tunnel your local app using a service like `PageKite` or `Localtunnel`.
+Please note that in order to authenticate with MailUp you will need to tunnel your local app using a service like [PageKite](http://pagekite.net) (recommended) or [Localtunnel](http://progrium.com/localtunnel/).
