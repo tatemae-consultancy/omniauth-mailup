@@ -1,6 +1,5 @@
 require 'omniauth-oauth2'
 require 'multi_json'
-require 'multi_xml'
 
 module OmniAuth
   module Strategies
@@ -31,7 +30,7 @@ module OmniAuth
       # Get more information about the user.
       def raw_info
         req = access_token.get('/API/v1/Rest/ConsoleService.svc/Console/Authentication/Info')
-        @raw_info ||= MultiXml.parse(req.body)["ConsoleCurrentAuthenticatedUserInfo"]
+        @raw_info ||= MultiJson.load(req.body)
       end
     end
   end
