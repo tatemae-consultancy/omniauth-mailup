@@ -16,5 +16,6 @@ test/tmp
 test/version_tmp
 tmp
 .ruby-version
-.ruby-gemsets
+.rbenv-gemsets
+.rbenv-vars
 .bashrc
