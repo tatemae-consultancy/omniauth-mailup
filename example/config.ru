@@ -1,6 +1,5 @@
-require 'bundler/setup'
-require 'sinatra/base'
-require 'omniauth-mailup'
+require 'bundler'
+Bundler.require
 
 class App < Sinatra::Base
   get '/' do
