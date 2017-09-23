@@ -1,5 +1,4 @@
 require 'omniauth-oauth2'
-require 'multi_json'
 
 module OmniAuth
   module Strategies
@@ -27,11 +26,20 @@ module OmniAuth
           is_trial: raw_info["IsTrial"]
         }
       end
+
+      # We need to ovveride this method because with the default one the 
+      # callback_urls are different between the request phase and the 
+      # callback phases (the query string is added)
+      #
+      # Based on the OAuth specification if the redirect_uri is give during the
+      # request phase the same uri must be given during the callback phase 
+      def callback_url
+        full_host + script_name + callback_path
+      end
       
       # Get more information about the user.
       def raw_info
-        req = access_token.get('/API/v1.1/Rest/ConsoleService.svc/Console/Authentication/Info')
-        @raw_info ||= MultiJson.load(req.body)
+        @raw_info ||= access_token.get('/API/v1.1/Rest/ConsoleService.svc/Console/Authentication/Info').parsed
       end
     end
   end
